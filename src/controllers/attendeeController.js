@@ -44,7 +44,7 @@ export const changeAttendingStatus = async (id, attending) => {
 export const searchForAttendee = async (name) => {
   try {
     console.log(name);
-    const attendees = await Attendee.find({ $name: { $search: name } });
+    const attendees = await Attendee.find({ $text: { $search: `${name}` } });
     return attendees;
   } catch (error) {
     throw new Error('Error searching attendees:', error);

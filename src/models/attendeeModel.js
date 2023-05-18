@@ -20,6 +20,7 @@ const attendeeSchema = new Schema({
   toJSON: { virtuals: true },
 });
 
+attendeeSchema.index({ name: 'text' });
 const Attendee = mongoose.model('Attendee', attendeeSchema);
 
 export default Attendee;
