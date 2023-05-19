@@ -2,7 +2,6 @@ import Attendee from '../models/attendeeModel';
 
 export const addAttendee = async (body) => {
   const { name, family } = body;
-  console.log('here');
   try {
     const newAttendee = await Attendee.create({
       name,
@@ -17,7 +16,7 @@ export const addAttendee = async (body) => {
 // Get all attendees
 export const getAllAttendees = async () => {
   try {
-    const attendees = await Attendee.find();
+    const attendees = await Attendee.find().sort({ createdAt: 'desc' });
     return attendees;
   } catch (error) {
     throw new Error('Failed to get attendees');
@@ -43,8 +42,7 @@ export const changeAttendingStatus = async (id, attending) => {
 
 export const searchForAttendee = async (name) => {
   try {
-    console.log(name);
-    const attendees = await Attendee.find({ $text: { $search: `${name}` } });
+    const attendees = await Attendee.find({ $text: { $search: `${name}` } }).sort({ createdAt: 'desc' });
     return attendees;
   } catch (error) {
     throw new Error('Error searching attendees:', error);
