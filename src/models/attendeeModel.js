@@ -18,6 +18,7 @@ const attendeeSchema = new Schema({
 }, {
   toObject: { virtuals: true },
   toJSON: { virtuals: true },
+  timestamps: { createdAt: true },
 });
 
 attendeeSchema.index({ name: 'text' });
