@@ -16,7 +16,7 @@ export const addAttendee = async (body) => {
 // Get all attendees
 export const getAllAttendees = async () => {
   try {
-    const attendees = await Attendee.find().sort({ createdAt: 'desc' });
+    const attendees = await Attendee.find().sort({ createdAt: 'asc' });
     return attendees;
   } catch (error) {
     throw new Error('Failed to get attendees');
@@ -42,7 +42,7 @@ export const changeAttendingStatus = async (id, attending) => {
 
 export const searchForAttendee = async (name) => {
   try {
-    const attendees = await Attendee.find({ $text: { $search: `${name}` } }).sort({ createdAt: 'desc' });
+    const attendees = await Attendee.find({ $text: { $search: `${name}` } }).sort({ createdAt: 'asc' });
     return attendees;
   } catch (error) {
     throw new Error('Error searching attendees:', error);
